@@ -28,10 +28,7 @@ const Header = () => {
                 <Link to='/about'>About</Link>
             </li>
             <li>
-                <Link to='/profile/:id'>Profile</Link>
-            </li>
-            <li>
-                <Link to='/login' className='loginButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Log In</Link>
+                <Link to='/profile/:id' className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Profile</Link>
             </li>
         </ul>
       </nav>

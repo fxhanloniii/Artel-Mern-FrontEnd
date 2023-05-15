@@ -3,7 +3,7 @@ import './index.css';
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import { setCurrentUser, clearUserToken, setUserToken } from './utils/authToken';
+import { setUserToken, clearUserToken } from './utils/authToken';
 import { useState } from "react";
 
 function App() {
@@ -39,11 +39,38 @@ function App() {
   }
 }
 
+const loginUser = async (data) => {
+  try {
+    const configs = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    const response = await fetch(
+      'http://localhost:4000/auth/login',
+      configs
+    )
+    const user = await response.json()
+
+    setUserToken(user.token)
+
+    setCurrentUser(user.currentUser)
+
+    setIsAuthenticated(user.loggedIn)
+
+    return user
+  } catch (err) {
+    clearUserToken()
+    setIsAuthenticated(false)
+  }
+}
 
   return (
     <div className="App">
-      <Header />
-      <Main />
+      <Header user={currentUser} />
+      <Main isLoggedIn={isAuthenticated} signup={registerUser} login={loginUser} user={currentUser}/>
       <Footer />
     </div>
   );
