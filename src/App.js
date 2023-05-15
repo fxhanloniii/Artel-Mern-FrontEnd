@@ -10,7 +10,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const registerUser = async (data) => {
+  const signUp = async (data) => {
     try {
       const configs = {
         method: 'POST',
@@ -70,7 +70,7 @@ const loginUser = async (data) => {
   return (
     <div className="App">
       <Header user={currentUser} />
-      <Main isLoggedIn={isAuthenticated} signUp={registerUser} login={loginUser} user={currentUser}/>
+      <Main isLoggedIn={isAuthenticated} signUp={signUp} login={loginUser} user={currentUser}/>
       <Footer />
     </div>
   );
