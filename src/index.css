@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
 
 html, body {
@@ -11,8 +15,25 @@ html, body {
 .header {
   padding: 10px;
   height: 80px;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .header img {
   width: 200px;
+}
+
+nav ul {
+  display: flex;
+  color: white;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 40px
+}
+
+.loginButton {
+  display: inline-block;
+  padding: 10px 20px;
 }
