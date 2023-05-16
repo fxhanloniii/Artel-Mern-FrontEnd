@@ -28,7 +28,7 @@ const SignUpForm = ({signUp}) => {
     <div className='form'>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Name: </label>
+        <label htmlFor="username">UserName: </label>
         <input
           id="username"
           name="username"
