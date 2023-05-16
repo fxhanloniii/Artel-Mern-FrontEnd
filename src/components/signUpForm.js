@@ -57,7 +57,7 @@ const SignUpForm = ({signUp}) => {
         />
         <br />
         <br />
-        <input type="submit" value="Sign Up" />
+        <input className="submit bg-gradient-to-r from-blue-500 to-purple-500" type="submit" value="Sign Up" />
       </form>
     </div>
   )

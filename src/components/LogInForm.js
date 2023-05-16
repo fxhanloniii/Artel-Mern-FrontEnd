@@ -48,7 +48,7 @@ const LogInForm = ({ login }) => {
         />
         <br />
         <br />
-        <input type="submit" value="Login" />
+        <input className="submit bg-gradient-to-r from-blue-500 to-purple-500" type="submit" value="Login" />
       </form>
     </div>
   )

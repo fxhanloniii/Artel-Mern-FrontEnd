@@ -47,8 +47,13 @@ nav li {
   width: 300px;
   margin: auto;
   margin-top: 20px;
-  padding: 20px;
+  padding: 15px;
   box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+.form h1 {
+  margin-bottom: 10px;
 }
 
 .form label {
@@ -60,9 +65,18 @@ nav li {
 .form input {
   width: 100%;
   padding: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   outline: none;
+}
+
+.submit {
+  width: 100%;
+  padding: 8px;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
