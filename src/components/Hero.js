@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 
 const Hero = () => {
     const [imageIndex, setImageIndex] = useState(0);
+    const images = ['./assets/slideshow/hero.png', './assets/slideshow/hero1.png', './assets/slideshow/hero2.png', './assets/slideshow/hero3.png', './assets/slideshow/hero4.png', './assets/slideshow/hero5.png', './assets/slideshow/hero6.png', './assets/slideshow/hero7.png', './assets/slideshow/hero8.png', './assets/slideshow/hero9.png'];
+
     
   return (
     <div className='hero'>
@@ -17,7 +19,7 @@ const Hero = () => {
       </div>
       <div className='heroPost'>
         <div className='slideshow'>
-
+            <img src={images[imageIndex]} alt='slideshow' className='slideshowImg' />
         </div>
         <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
             <div className='iconContainer'>
