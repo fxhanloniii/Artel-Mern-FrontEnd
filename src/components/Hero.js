@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
+    const [imageIndex, setImageIndex] = useState(0);
+    
   return (
     <div className='hero'>
       <div className='hero1'>
