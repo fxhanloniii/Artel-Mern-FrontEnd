@@ -14,7 +14,7 @@ const SignUpForm = ({signUp}) => {
         const createdUserToken = await signUp(input);
 
         if (createdUserToken) {
-            navigate(`/profile/${input.username}`);
+            navigate(`/user/profile/${input.username}`);
         } else {
             navigate('/')
         }

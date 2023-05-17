@@ -4,18 +4,19 @@ import Home from '../pages/Home';
 import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import UserProfile from '../pages/UserProfile';
+// import { UserContext } from '../UserContext';
 
-const Main = ({ signUp, login }) => {
+const Main = ({ signUp, login, user, isLoggedIn }) => {
   return (
     <div>
+      {/* <UserContext.Provider> */}
       <Routes>
-      {/* 
-      <LogInForm login={login} /> */}
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<SignUp signUp={signUp}/>} />
         <Route path='/login' element={<LogIn login={login}/>} />
-        <Route path='/profile/:username' element={<UserProfile />} />
+        <Route path='/user/profile/:username' element={<UserProfile user={user} isLoggedIn={isLoggedIn} />} />
       </Routes>
+      {/* </UserContext.Provider> */}
     </div>
   )
 }

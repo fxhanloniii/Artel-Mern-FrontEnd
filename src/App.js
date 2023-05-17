@@ -24,12 +24,12 @@ function App() {
       configs
     )
     const parsedUser = await newUser.json()
-
+      console.log(parsedUser)
     setUserToken(parsedUser.token)
 
-    setCurrentUser(parsedUser.currentUser)
+    setCurrentUser(parsedUser)
 
-    setIsAuthenticated(parsedUser.loggedIn)
+    setIsAuthenticated(true)
 
     return parsedUser;
   } catch (err) {
@@ -56,10 +56,10 @@ const loginUser = async (data) => {
 
     setUserToken(user.token)
 
-    setCurrentUser(user.currentUser)
+    setCurrentUser(user)
 
-    setIsAuthenticated(user.loggedIn)
-
+    setIsAuthenticated(true)
+      console.log(user)
     return user
   } catch (err) {
     clearUserToken()
@@ -70,7 +70,11 @@ const loginUser = async (data) => {
   return (
     <div className="App">
       <Header user={currentUser} />
-      <Main isLoggedIn={isAuthenticated} signUp={signUp} login={loginUser} user={currentUser}/>
+      <Main 
+        isLoggedIn={isAuthenticated} 
+        signUp={signUp} 
+        login={loginUser} 
+        user={currentUser}/>
       <Footer />
     </div>
   );

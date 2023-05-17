@@ -6,13 +6,10 @@ const Header = () => {
     // Setting Drop Down Menu
     const [toggle, setToggle] = useState(false);
 
-    const handleToggle = () => {
-        setToggle(!toggle);
-    }
 
   return (
     <div className='header bg-gradient-to-r from-gray-600 to-gray-400'>
-      <img src='../logo/logo1.png' alt='logo'/>
+      <img src='/logo/logo1.png' alt='logo'/>
       <nav>
         <ul>
             <li>
@@ -28,7 +25,7 @@ const Header = () => {
                 <Link to='/about'>About</Link>
             </li>
             <li>
-                <Link to='/profile/:username' className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Profile</Link>
+                <Link to='/user/profile/:username' className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Profile</Link>
             </li>
         </ul>
       </nav>
