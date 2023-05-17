@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
   return (
     <div className='hero'>
@@ -12,7 +13,16 @@ const Hero = () => {
         </div>
       </div>
       <div className='heroPost'>
-        
+        <div className='slideshow'>
+
+        </div>
+        <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
+            <div className='iconContainer'>
+            <img src="./assets/redHeart.png" alt="like" className="icon animate-pulse" />
+            <img src="./assets/comments.png" alt="comment" className="icon" />
+            </div>
+            <p className='heroPostTag'>@ARTEL</p>
+        </div>
       </div>
     </div>
   )
