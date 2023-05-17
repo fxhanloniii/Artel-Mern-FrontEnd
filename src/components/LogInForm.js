@@ -14,7 +14,7 @@ const LogInForm = ({ login }) => {
 
         if (createdUserToken) {
             setUserToken(createdUserToken);
-            navigate('/trending');
+            navigate(`/profile/${input.username}`);
         } else {
             navigate('/')
         }

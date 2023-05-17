@@ -14,7 +14,7 @@ const SignUpForm = ({signUp}) => {
         const createdUserToken = await signUp(input);
 
         if (createdUserToken) {
-            navigate('/trending');
+            navigate(`/profile/${input.username}`);
         } else {
             navigate('/')
         }
