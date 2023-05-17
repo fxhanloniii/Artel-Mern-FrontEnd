@@ -139,6 +139,11 @@ nav li {
   border-bottom: 4px solid #a28357;
 }
 
+.slideshowImg {
+  width: 100%;
+  height: 100%;
+}
+
 .heroPostBottom {
   height: 40px;
   width: 100%;
