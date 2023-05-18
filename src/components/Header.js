@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Header = () => {
+const Header = ({ user, isLoggedIn }) => {
     // Setting Drop Down Menu
     const [toggle, setToggle] = useState(false);
+    
 
 
   return (
@@ -25,7 +26,15 @@ const Header = () => {
                 <Link to='/about'>About</Link>
             </li>
             <li>
-                <Link to='/user/profile/:username' className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Profile</Link>
+              {isLoggedIn ? (
+                <Link to={`/user/profile/${user.username}`} 
+                className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Profile</Link>
+
+              ) : ( 
+                <Link to='/login'
+                className='profileButton bg-gradient-to-r from-blue-500 to-purple-500 rounded-md'>Log In</Link>
+              )}
+                
             </li>
         </ul>
       </nav>

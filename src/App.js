@@ -4,11 +4,23 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import { setUserToken, clearUserToken } from './utils/authToken';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //   setCurrentUser(localStorage.getItem('token') ? currentUser : {})
+  //   setIsAuthenticated(localStorage.getItem('token') ? true : false)
+  // },[])
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token)
+    })
+
+  
 
   const signUp = async (data) => {
     try {
@@ -26,10 +38,10 @@ function App() {
     const parsedUser = await newUser.json()
       console.log(parsedUser)
     setUserToken(parsedUser.token)
-
-    setCurrentUser(parsedUser)
-
-    setIsAuthenticated(true)
+      console.log(parsedUser.token)
+    setCurrentUser(parsedUser.currentUser)
+      console.log(parsedUser.currentUser)
+    setIsAuthenticated(parsedUser.loggedIn)
 
     return parsedUser;
   } catch (err) {
@@ -52,14 +64,17 @@ const loginUser = async (data) => {
       'http://localhost:4000/auth/login',
       configs
     )
-    const user = await response.json()
-
-    setUserToken(user.token)
-
+    const { user, token } = await response.json()
+    console.log(user, 'user')
+    console.log(token, 'token')
+    
+    setUserToken(token)
+    
     setCurrentUser(user)
 
     setIsAuthenticated(true)
-      console.log(user)
+
+      
     return user
   } catch (err) {
     clearUserToken()
@@ -69,7 +84,7 @@ const loginUser = async (data) => {
 
   return (
     <div className="App">
-      <Header user={currentUser} />
+      <Header user={currentUser} isLoggedIn={isAuthenticated} />
       <Main 
         isLoggedIn={isAuthenticated} 
         signUp={signUp} 

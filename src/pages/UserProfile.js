@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-
+import NewPost from '../components/NewPost';
+import { getUserToken } from '../utils/authToken';
 
 const UserProfile = ({ user, isLoggedIn }) => {
     const [userPosts, setUserPosts] = useState([]);
@@ -10,13 +10,11 @@ const UserProfile = ({ user, isLoggedIn }) => {
 
     useEffect(() => {
         const fetchUserProfile = async () => {
-            try {
-                console.log(user.user._id)
-                console.log(isLoggedIn)
-                
+            console.log(getUserToken())
+            try { 
                 const response = await fetch(`http://localhost:4000/user/profile/${username}`, {
                     headers: {
-                        'Authorization': `Bearer ${user.token}`,
+                        'Authorization': `Bearer ${getUserToken()}`,
                     },
                 });
                 const data = await response.json();
@@ -28,17 +26,38 @@ const UserProfile = ({ user, isLoggedIn }) => {
     fetchUserProfile(); 
     }, [isLoggedIn, username, user]);
 
+    if (!userPosts) {
+        return <h1>Loading...</h1>
+    }
     
 
   return (
     <div>
-      <h2>{username}</h2>
-      {userPosts.map((post) => (
-        <div key={post._id}>
-            <h3>{post.caption}</h3>
-
+        <div className='profileHero'>
+            <div>
+            <h1>@{username}</h1>
+            </div>
+            <div className='form'>
+                <h2>Share Your Artwork</h2>
+                <NewPost user={user}/>
+            </div>
         </div>
-      ))}
+        <div className='postSection'>
+        {userPosts.map((post) => (
+            <div key={post._id} className='heroPost'>
+                <div className='slideshow'>
+                    <img src={post.image} alt='user post' className='slideshowImg' />
+                </div>
+                <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
+                    <div className='iconContainer'>
+                        <img src="/assets/redHeart.png" alt="like" className="icon" />
+                        <img src="/assets/comments.png" alt="comment" className="icon" />
+                    </div>
+                <p className='heroPostTag'>{`@${username}`}</p>
+                </div>
+            </div>
+        ))}
+        </div>
     </div>
   )
 }

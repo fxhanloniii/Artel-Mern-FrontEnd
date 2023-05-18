@@ -11,7 +11,7 @@ const Main = ({ signUp, login, user, isLoggedIn }) => {
     <div>
       {/* <UserContext.Provider> */}
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home isLoggedIn={isLoggedIn}/>} />
         <Route path='/signup' element={<SignUp signUp={signUp}/>} />
         <Route path='/login' element={<LogIn login={login}/>} />
         <Route path='/user/profile/:username' element={<UserProfile user={user} isLoggedIn={isLoggedIn} />} />

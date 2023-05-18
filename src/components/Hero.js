@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const Hero = () => {
+const Hero = ({ isLoggedIn }) => {
     const [imageIndex, setImageIndex] = useState(0);
     const images = ['./assets/slideshow/hero.png', './assets/slideshow/hero1.png', './assets/slideshow/hero2.png', './assets/slideshow/hero3.png', './assets/slideshow/hero4.png', './assets/slideshow/hero5.png', './assets/slideshow/hero6.png', './assets/slideshow/hero7.png', './assets/slideshow/hero8.png', './assets/slideshow/hero9.png'];
-
     useEffect(() => {
         // Slideshow Interval
         const interval = setInterval(() => {

@@ -13,7 +13,6 @@ const LogInForm = ({ login }) => {
         const createdUserToken = await login(input);
 
         if (createdUserToken) {
-            setUserToken(createdUserToken);
             navigate(`/user/profile/${input.username}`);
         } else {
             navigate('/')
