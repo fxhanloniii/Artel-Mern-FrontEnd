@@ -198,3 +198,12 @@ nav li {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Show Page */
+
+.showPage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  align-items: center;
+}

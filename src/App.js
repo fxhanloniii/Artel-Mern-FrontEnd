@@ -17,8 +17,25 @@ function App() {
 
     useEffect(() => {
       const token = localStorage.getItem('token');
-      if (token)
-    })
+      if (token) {
+        const fetchUser = async () => {
+          try {
+            const response = await fetch('http://localhost:4000/user', {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            const user = await response.json();
+            setCurrentUser(user);
+            setIsAuthenticated(true)
+            
+          } catch(err) {
+            console.error('Error fetching user info', err)
+          }
+        }
+        fetchUser();
+      }
+    }, [])
 
   
 

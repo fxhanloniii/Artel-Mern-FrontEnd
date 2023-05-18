@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import NewPost from '../components/NewPost';
 import { getUserToken } from '../utils/authToken';
@@ -10,7 +10,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
 
     useEffect(() => {
         const fetchUserProfile = async () => {
-            console.log(getUserToken())
+            console.log(user)
             try { 
                 const response = await fetch(`http://localhost:4000/user/profile/${username}`, {
                     headers: {
@@ -45,6 +45,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
         <div className='postSection'>
         {userPosts.map((post) => (
             <div key={post._id} className='heroPost'>
+                <Link to={`/art/${post._id}`}>
                 <div className='slideshow'>
                     <img src={post.image} alt='user post' className='slideshowImg' />
                 </div>
@@ -55,6 +56,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
                     </div>
                 <p className='heroPostTag'>{`@${username}`}</p>
                 </div>
+                </Link>
             </div>
         ))}
         </div>
