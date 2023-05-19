@@ -40,6 +40,9 @@ const ShowPost = () => {
                 <p className='heroPostTag'>{`@${post.username}`}</p>
                 </div>
         </div>
+        <div className='showPostBtns'>
+            
+        </div>
     </div>
   )
 }

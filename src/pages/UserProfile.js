@@ -6,6 +6,7 @@ import { getUserToken } from '../utils/authToken';
 
 const UserProfile = ({ user, isLoggedIn }) => {
     const [userPosts, setUserPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { username } = useParams();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
                 });
                 const data = await response.json();
                 setUserPosts(data.posts);
+                setLoading(false);
             } catch (err) {
                 console.error('Error fetching user profile', err)
             }     
@@ -26,7 +28,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
     fetchUserProfile(); 
     }, [isLoggedIn, username, user]);
 
-    if (!userPosts) {
+    if (loading) {
         return <h1>Loading...</h1>
     }
     
