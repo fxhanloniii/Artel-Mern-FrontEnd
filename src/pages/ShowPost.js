@@ -6,8 +6,9 @@ import CommentForm from '../components/CommentForm';
 const ShowPost = ({ comment }) => {
     const [post, setPost] = useState({})
     const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState([])
     const { id } = useParams();
-    console.log(id)
+    
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -15,8 +16,10 @@ const ShowPost = ({ comment }) => {
                 const response = await fetch(`http://localhost:4000/art/${id}`);
                 const data = await response.json();
                 setPost(data)
+                setComments(data.comments)
                 setLoading(false);
                 console.log(data)
+                console.log(data.comments)
             } catch (err) {
                 console.error('Error fetching post', err);
             };
@@ -44,9 +47,8 @@ const ShowPost = ({ comment }) => {
         <div className='showPostBtns'>
 
         </div>
-        <div className='comments'>
-            <h1>Comments</h1>
-            <CommentForm postId={id} comment={comment}/>
+        <div>
+            <CommentForm postId={id} comment={comment} comments={comments}/>
         </div>
     </div>
   )

@@ -207,3 +207,61 @@ nav li {
   margin-top: 50px;
   align-items: center;
 }
+
+/* Comment Form */
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  height: 400px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 15px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 300px;
+  text-align: left;
+  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);
+  overflow-y: auto;
+}
+
+.comment {
+  display: flex;
+  word-wrap: break-word;
+  margin: 2px 2px;
+}
+
+.commenter {
+  margin-right: 5px;
+  color:darkgray
+}
+
+.commentFormBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  margin-top: 20px;
+  border-radius: 4px;
+
+}
+
+.commentInput {
+  margin-bottom: 10px;
+}
+
+.commentFormBox input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
