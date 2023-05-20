@@ -2,27 +2,37 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 
-const CommentForm = ({ comment, comments, postId }) => {
+const CommentForm = ({ comment, comments, postId, setComments, fetchPost }) => {
     const [commentText, setCommentText] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const commentSubmit = async (e) => {
         e.preventDefault();
         try {
-            await comment(postId, commentText);
+            setLoading(true);
+            const newComment = await comment(postId, commentText);
+            fetchPost();
             setCommentText('');
+            console.log(newComment)
+            setLoading(false);
         } catch (err) {
-            console.error('Error posting comment', err)
+            console.error('Error posting comment', err);
+            setLoading(false);
         }
     }
     const handleChange = (e) => {
         setCommentText(e.target.value)
     };
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    } 
   return (
     <div className='commentForm'>
       <div className='comments'>
-        {comments.map((com) => (
-            <div key={com._id} className='comment'>
-                <p className='commenter'>@{com.username}:</p><p> {com.text}</p>
+        {comments && comments.map((com) => (
+            <div key={com.id} className='comment'>
+                <p className='commenter'>@{com.username}:</p><p>{com.text}</p>
             </div>
         ))}
       </div>

@@ -118,6 +118,7 @@ const handleComment = async (postId, commentText) => {
       }
     });
     const comment = await response.json();
+    return comment
     console.log(comment)
   } catch (err) {
     console.error('Error posting comment', err)

@@ -44,7 +44,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
             </div>
             <div className='form'>
                 <h2>Share Your Artwork</h2>
-                <NewPost user={user} onNewPost={handleNewPost}/>
+                <NewPost user={user} onNewPost={handleNewPost} />
             </div>
         </div>
         <div className='postSection'>

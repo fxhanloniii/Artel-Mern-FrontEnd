@@ -9,21 +9,21 @@ const ShowPost = ({ comment }) => {
     const [comments, setComments] = useState([])
     const { id } = useParams();
     
+    const fetchPost = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/art/${id}`);
+            const data = await response.json();
+            setPost(data)
+            setComments(data.comments)
+            setLoading(false);
+            console.log(data)
+            console.log(data.comments)
+        } catch (err) {
+            console.error('Error fetching post', err);
+        };
+    };
 
     useEffect(() => {
-        const fetchPost = async () => {
-            try {
-                const response = await fetch(`http://localhost:4000/art/${id}`);
-                const data = await response.json();
-                setPost(data)
-                setComments(data.comments)
-                setLoading(false);
-                console.log(data)
-                console.log(data.comments)
-            } catch (err) {
-                console.error('Error fetching post', err);
-            };
-        };
         fetchPost();
     }, [])
 
@@ -48,7 +48,7 @@ const ShowPost = ({ comment }) => {
 
         </div>
         <div>
-            <CommentForm postId={id} comment={comment} comments={comments}/>
+            <CommentForm postId={id} comment={comment} comments={comments} setComments={setComments} fetchPost={fetchPost}/>
         </div>
     </div>
   )
