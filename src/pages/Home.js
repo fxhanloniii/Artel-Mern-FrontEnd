@@ -31,7 +31,7 @@ const Home = ({ isLoggedIn }) => {
     }
   }, []);
 
-  if (loading) {
+  if (isLoggedIn & loading) {
     return <h1>Loading...</h1>
   }
   if (isLoggedIn) {

@@ -3,7 +3,7 @@ import './index.css';
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import { setUserToken, clearUserToken } from './utils/authToken';
+import { setUserToken, clearUserToken, getUserToken } from './utils/authToken';
 import { useState, useEffect } from "react";
 
 function App() {
@@ -99,6 +99,31 @@ const loginUser = async (data) => {
   }
 }
 
+const handleLike = async (postId) => {
+
+}
+
+const handleComment = async (postId, commentText) => {
+  try {
+    const data = {
+      text: commentText,
+      user: currentUser._id
+    };
+    const response = await fetch(`http://localhost:4000/art/${postId}/comment`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getUserToken()}`
+      }
+    });
+    const comment = await response.json();
+    console.log(comment)
+  } catch (err) {
+    console.error('Error posting comment', err)
+  }
+}
+
   return (
     <div className="App">
       <Header user={currentUser} isLoggedIn={isAuthenticated} />
@@ -106,7 +131,8 @@ const loginUser = async (data) => {
         isLoggedIn={isAuthenticated} 
         signUp={signUp} 
         login={loginUser} 
-        user={currentUser}/>
+        user={currentUser}
+        comment={handleComment}/>
       <Footer />
     </div>
   );
