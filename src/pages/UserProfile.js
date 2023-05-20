@@ -32,6 +32,9 @@ const UserProfile = ({ user, isLoggedIn }) => {
         return <h1>Loading...</h1>
     }
     
+    const handleNewPost = async (newPost) => {
+            setUserPosts((prevPosts) => [newPost, ...prevPosts]);
+    }
 
   return (
     <div>
@@ -41,7 +44,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
             </div>
             <div className='form'>
                 <h2>Share Your Artwork</h2>
-                <NewPost user={user}/>
+                <NewPost user={user} onNewPost={handleNewPost}/>
             </div>
         </div>
         <div className='postSection'>

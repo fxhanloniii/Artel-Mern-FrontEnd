@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { getUserToken } from '../utils/authToken';
 
-const NewPost = ({ user }) => {
+const NewPost = ({ onNewPost }) => {
     const [caption, setCaption] = useState('');
     const [image, setImage] = useState('');
 
@@ -19,6 +19,12 @@ const NewPost = ({ user }) => {
                 },
                 body: JSON.stringify({caption, image})
             });
+            const newPost = await response.json();
+            onNewPost(newPost)
+            setCaption('');
+            setImage('');
+
+            
         } catch (err) {
             console.error('Error creating post:', err)
         }

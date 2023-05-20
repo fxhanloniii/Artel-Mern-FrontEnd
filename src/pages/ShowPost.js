@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import CommentForm from '../components/CommentForm';
 
-const ShowPost = () => {
+const ShowPost = ({ comment }) => {
     const [post, setPost] = useState({})
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
@@ -41,7 +42,11 @@ const ShowPost = () => {
                 </div>
         </div>
         <div className='showPostBtns'>
-            
+
+        </div>
+        <div className='comments'>
+            <h1>Comments</h1>
+            <CommentForm postId={id} comment={comment}/>
         </div>
     </div>
   )
