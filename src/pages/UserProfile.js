@@ -42,10 +42,11 @@ const UserProfile = ({ user, isLoggedIn }) => {
             <div>
             <h1>@{username}</h1>
             </div>
+            {username === user.username &&
             <div className='form'>
                 <h2>Share Your Artwork</h2>
-                <NewPost user={user} onNewPost={handleNewPost} />
-            </div>
+                <NewPost user={user} onNewPost={handleNewPost} /> 
+            </div> }
         </div>
         <div className='postSection'>
         {userPosts.map((post) => (

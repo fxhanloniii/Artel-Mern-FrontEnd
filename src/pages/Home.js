@@ -48,7 +48,7 @@ const Home = ({ isLoggedIn }) => {
                         <img src="/assets/redHeart.png" alt="like" className="icon" />
                         <img src="/assets/comments.png" alt="comment" className="icon" />
                     </div>
-                {/* <p className='heroPostTag'>{`@${username}`}</p> */}
+                {/* <p className='heroPostTag'>{`@${post.user}`}</p> */}
                 </div>
                 </Link>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CommentForm from '../components/CommentForm';
 import EditDelete from '../components/EditDelete';
@@ -44,7 +44,7 @@ const ShowPost = ({ comment, user }) => {
                     <img src="/assets/redHeart.png" alt="like" className="icon" />
                     <img src="/assets/comments.png" alt="comment" className="icon" />
                 </div>
-                <p className='heroPostTag'>{`@${post.username}`}</p>
+                <Link to={`/user/profile/${post.username}`}><p className='heroPostTag'>{`@${post.username}`}</p></Link>
                 </div>
         </div>
         <div className='showPostBtns'>   
