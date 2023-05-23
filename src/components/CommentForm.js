@@ -13,7 +13,6 @@ const CommentForm = ({ comment, comments, postId, setComments, fetchPost }) => {
             const newComment = await comment(postId, commentText);
             fetchPost();
             setCommentText('');
-            console.log(newComment)
             setLoading(false);
         } catch (err) {
             console.error('Error posting comment', err);
@@ -27,6 +26,7 @@ const CommentForm = ({ comment, comments, postId, setComments, fetchPost }) => {
     if (loading) {
         return <h1>Loading...</h1>
     } 
+
   return (
     <div className='commentForm'>
       <div className='comments'>

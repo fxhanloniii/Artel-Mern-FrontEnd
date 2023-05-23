@@ -2,26 +2,28 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CommentForm from '../components/CommentForm';
+import EditDelete from '../components/EditDelete';
 
-const ShowPost = ({ comment }) => {
+const ShowPost = ({ comment, user }) => {
     const [post, setPost] = useState({})
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([])
     const { id } = useParams();
     
+
     const fetchPost = async () => {
         try {
             const response = await fetch(`http://localhost:4000/art/${id}`);
             const data = await response.json();
+            console.log(data)
             setPost(data)
             setComments(data.comments)
             setLoading(false);
-            console.log(data)
-            console.log(data.comments)
         } catch (err) {
             console.error('Error fetching post', err);
         };
     };
+
 
     useEffect(() => {
         fetchPost();
@@ -30,6 +32,7 @@ const ShowPost = ({ comment }) => {
     if (loading) {
         return <h1>Loading...</h1>
     }
+
   return (
     <div className='showPage'>
         <div className='heroPost'>
@@ -44,8 +47,8 @@ const ShowPost = ({ comment }) => {
                 <p className='heroPostTag'>{`@${post.username}`}</p>
                 </div>
         </div>
-        <div className='showPostBtns'>
-
+        <div className='showPostBtns'>   
+           {user._id === post.post.user && <EditDelete /> }
         </div>
         <div>
             <CommentForm postId={id} comment={comment} comments={comments} setComments={setComments} fetchPost={fetchPost}/>
