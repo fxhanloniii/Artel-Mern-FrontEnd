@@ -22,7 +22,7 @@ const ShowPost = ({ comment, user }) => {
             console.log(data)
             setPost(data)
             setCaption(data.post.caption)
-            console.log(caption)
+            console.log(user.username)
             setComments(data.comments)
             setLoading(false);
         } catch (err) {
@@ -107,7 +107,7 @@ const ShowPost = ({ comment, user }) => {
            {user._id === post.post.user && <EditDelete handleDelete={handleDelete} setEditing={setEditing}/> }
         </div>
         <div>
-            <CommentForm postId={id} comment={comment} comments={comments} setComments={setComments} fetchPost={fetchPost}/>
+            <CommentForm postId={id} comment={comment} comments={comments} setComments={setComments} fetchPost={fetchPost} user={user}/>
         </div>
     </div>
   )

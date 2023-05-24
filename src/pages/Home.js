@@ -5,7 +5,6 @@ import { getUserToken } from '../utils/authToken';
 import { Link } from 'react-router-dom';
 
 const Home = ({ isLoggedIn }) => {
-  console.log(isLoggedIn)
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +19,6 @@ const Home = ({ isLoggedIn }) => {
         });
         const data = await response.json();
         setPosts(data);
-        console.log(data)
         setLoading(false);
       } catch (err) {
         console.error('Error fetching recent posts', err)
@@ -48,7 +46,7 @@ const Home = ({ isLoggedIn }) => {
                         <img src="/assets/redHeart.png" alt="like" className="icon" />
                         <img src="/assets/comments.png" alt="comment" className="icon" />
                     </div>
-                {/* <p className='heroPostTag'>{`@${post.user}`}</p> */}
+                {/* <p className='heroPostTag'>{`${post.caption}`}</p> */}
                 </div>
                 </Link>
             </div>
