@@ -5,6 +5,7 @@ import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import UserProfile from '../pages/UserProfile';
 import ShowPost from '../pages/ShowPost';
+import Trending from '../pages/Trending';
 // import { UserContext } from '../UserContext';
 
 const Main = ({ signUp, login, user, isLoggedIn, comment }) => {
@@ -17,6 +18,7 @@ const Main = ({ signUp, login, user, isLoggedIn, comment }) => {
         <Route path='/login' element={<LogIn login={login}/>} />
         <Route path='/user/profile/:username' element={<UserProfile user={user} isLoggedIn={isLoggedIn} />} />
         <Route path='/art/:id' element={<ShowPost user={user} isLoggedIn={isLoggedIn} comment={comment}/>}/>
+        <Route path='/trending' element={<Trending user={user} isLoggedIn={isLoggedIn} />} />
       </Routes>
       {/* </UserContext.Provider> */}
     </div>
