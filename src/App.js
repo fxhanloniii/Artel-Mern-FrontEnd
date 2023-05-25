@@ -134,7 +134,7 @@ const handleComment = async (postId, commentText) => {
         login={loginUser} 
         user={currentUser}
         comment={handleComment}/>
-      <Footer />
+      <Footer isLoggedIn={isAuthenticated} setIsLoggedIn={setIsAuthenticated} />
     </div>
   );
 }
