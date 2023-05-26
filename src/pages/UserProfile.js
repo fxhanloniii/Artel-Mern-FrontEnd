@@ -29,7 +29,7 @@ const UserProfile = ({ user, isLoggedIn }) => {
     }, [isLoggedIn, username, user]);
 
     if (loading) {
-        return <h1>Loading...</h1>
+        return <div  className='loading'><h1>Loading...</h1></div>
     }
     
     const handleNewPost = async (newPost) => {

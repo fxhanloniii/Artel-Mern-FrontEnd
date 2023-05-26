@@ -58,7 +58,7 @@ function App() {
       console.log(parsedUser.token)
     setCurrentUser(parsedUser.currentUser)
       console.log(parsedUser.currentUser)
-    setIsAuthenticated(parsedUser.loggedIn)
+    setIsAuthenticated(true)
 
     return parsedUser;
   } catch (err) {
@@ -82,8 +82,7 @@ const loginUser = async (data) => {
       configs
     )
     const { user, token } = await response.json()
-    console.log(user, 'user')
-    console.log(token, 'token')
+    
     
     setUserToken(token)
     
@@ -100,7 +99,15 @@ const loginUser = async (data) => {
 }
 
 const handleLike = async (postId) => {
-
+  try {
+    const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getUserToken()}`
+      }
+    })
+  }
 }
 
 const handleComment = async (postId, commentText) => {

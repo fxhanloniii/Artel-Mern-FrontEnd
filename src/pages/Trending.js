@@ -26,11 +26,12 @@ const Trending = ({ user, isLoggedIn }) => {
     }, []);
 
     if (loading) {
-        return <h1>Loading...</h1>
+        return <div  className='loading'><h1>Loading...</h1></div>
     }
 
   return (
     <div>
+    <h1 className='pageTitle'>Trending</h1>
     <div className='postSection'>
         {userPosts.map((post) => (
             <div key={post._id} className='heroPost'>

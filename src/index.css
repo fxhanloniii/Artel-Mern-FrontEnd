@@ -336,3 +336,21 @@ nav li {
   cursor: pointer;
   margin: 10px;
 }
+
+/* Loading */
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Page Title */
+
+.pageTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 40px;
+}

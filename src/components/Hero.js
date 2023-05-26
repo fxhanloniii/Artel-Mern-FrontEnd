@@ -13,6 +13,8 @@ const Hero = ({ isLoggedIn }) => {
 
         return () => clearInterval(interval);
     },[imageIndex, images.length])
+    
+// https://developer.mozilla.org/en-US/docs/Web/API/clearInterval
 
   return (
     <div className='hero'>

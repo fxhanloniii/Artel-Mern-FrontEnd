@@ -30,10 +30,12 @@ const Home = ({ isLoggedIn }) => {
   }, []);
 
   if (isLoggedIn & loading) {
-    return <h1>Loading...</h1>
+    return <div  className='loading'><h1>Loading...</h1></div>
   }
   if (isLoggedIn) {
     return (
+      <>
+      <h1 className='pageTitle'>Recent Posts</h1>
       <div className='postSection'>
         {posts.map((post) => (
             <div key={post._id} className='heroPost'>
@@ -41,6 +43,7 @@ const Home = ({ isLoggedIn }) => {
                 <div className='slideshow'>
                     <img src={post.image} alt='user post' className='slideshowImg' />
                 </div>
+                </Link>
                 <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
                     <div className='iconContainer'>
                         <img src="/assets/redHeart.png" alt="like" className="icon" />
@@ -48,10 +51,11 @@ const Home = ({ isLoggedIn }) => {
                     </div>
                 {/* <p className='heroPostTag'>{`${post.caption}`}</p> */}
                 </div>
-                </Link>
+                
             </div>
         ))}
         </div>
+        </>
     )
   } else {
   return (
