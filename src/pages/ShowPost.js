@@ -5,7 +5,7 @@ import CommentForm from '../components/CommentForm';
 import EditDelete from '../components/EditDelete';
 import { getUserToken } from '../utils/authToken';
 
-const ShowPost = ({ comment, user, like }) => {
+const ShowPost = ({ comment, user }) => {
     const [post, setPost] = useState({});
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);

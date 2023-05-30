@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getUserToken } from '../utils/authToken';
 
 
@@ -11,7 +11,7 @@ const CommentForm = ({ comment, comments, postId, user, fetchPost }) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const newComment = await comment(postId, commentText);
+            await comment(postId, commentText);
             fetchPost();
             setCommentText('');
             setLoading(false);

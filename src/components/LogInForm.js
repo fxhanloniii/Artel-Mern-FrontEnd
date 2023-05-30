@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { setUserToken } from '../utils/authToken';
+
 
 const LogInForm = ({ login }) => {
     const initialState = { username: '', password: ''};
@@ -10,16 +10,16 @@ const LogInForm = ({ login }) => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const createdUserToken = await login(input);
-
-        if (createdUserToken) {
-            navigate(`/user/profile/${input.username}`);
-        } else {
-            SetErrRes('Invalid Username or Password')
-            navigate('/login')
-        }
+      e.preventDefault();
+      const createdUserToken = await login(input);
+    
+      if (createdUserToken) {
+        navigate(`/user/profile/${input.username}`);
+      } else {
+        SetErrRes('Invalid Username or Password');
         setInput(initialState);
+        navigate('/login');
+      }
     };
 
     const handleChange = (e) => {

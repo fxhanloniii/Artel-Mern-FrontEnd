@@ -94,6 +94,7 @@ const loginUser = async (data) => {
       
     return user
   } catch (err) {
+    console.error('Error in loginUser:', err);
     clearUserToken()
     setIsAuthenticated(false)
     return false;
