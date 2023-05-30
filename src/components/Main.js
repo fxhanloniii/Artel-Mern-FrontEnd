@@ -6,12 +6,11 @@ import LogIn from '../pages/LogIn';
 import UserProfile from '../pages/UserProfile';
 import ShowPost from '../pages/ShowPost';
 import Trending from '../pages/Trending';
-// import { UserContext } from '../UserContext';
+
 
 const Main = ({ signUp, login, user, isLoggedIn, comment, like, heart }) => {
   return (
     <div>
-      {/* <UserContext.Provider> */}
       <Routes>
         <Route path='/' element={<Home isLoggedIn={isLoggedIn} user={user} like={like}/>} />
         <Route path='/signup' element={<SignUp signUp={signUp}/>} />
@@ -20,7 +19,6 @@ const Main = ({ signUp, login, user, isLoggedIn, comment, like, heart }) => {
         <Route path='/art/:id' element={<ShowPost user={user} isLoggedIn={isLoggedIn} comment={comment} like={like} heart={heart}/>}/>
         <Route path='/trending' element={<Trending user={user} isLoggedIn={isLoggedIn} like={like}/>} />
       </Routes>
-      {/* </UserContext.Provider> */}
     </div>
   )
 }

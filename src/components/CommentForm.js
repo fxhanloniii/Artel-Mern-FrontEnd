@@ -46,7 +46,6 @@ const CommentForm = ({ comment, comments, postId, user, fetchPost }) => {
       return <div  className='loading'><h1>Loading...</h1></div>
   }
 
-    console.log(user.username)
 
   return (
     <div className='commentForm'>

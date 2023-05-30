@@ -10,10 +10,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // useEffect(() => {
-  //   setCurrentUser(localStorage.getItem('token') ? currentUser : {})
-  //   setIsAuthenticated(localStorage.getItem('token') ? true : false)
-  // },[])
+
 
     useEffect(() => {
       const token = localStorage.getItem('token');
@@ -53,16 +50,15 @@ function App() {
       configs
     )
     const parsedUser = await newUser.json()
-      console.log(parsedUser)
+      
     setUserToken(parsedUser.token)
-      console.log(parsedUser.token)
+      
     setCurrentUser(parsedUser.currentUser)
-      console.log(parsedUser.currentUser)
+      
     setIsAuthenticated(true)
 
     return parsedUser;
   } catch (err) {
-    console.log(err)
     clearUserToken();
     setIsAuthenticated(false);
   }
@@ -106,16 +102,6 @@ const loginUser = async (data) => {
 
 
 
-
-
-// const renderHeartIcon = (post) => {
-//   const isLiked = post.likes.includes(currentUser._id);
-//   const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
-//   return (
-//     <img onClick={() => handleLike(post._id)} src={heartIcon} alt="like" className="icon" />
-//   );
-// };
-
 const handleComment = async (postId, commentText) => {
   try {
     const data = {
@@ -132,7 +118,6 @@ const handleComment = async (postId, commentText) => {
     });
     const comment = await response.json();
     return comment
-    console.log(comment)
   } catch (err) {
     console.error('Error posting comment', err)
   }

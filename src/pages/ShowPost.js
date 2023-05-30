@@ -21,7 +21,6 @@ const ShowPost = ({ comment, user, like }) => {
         try {
             const response = await fetch(`http://localhost:4000/art/${id}`);
             const data = await response.json();
-            console.log(data)
             setPost(data.post)
             setCaption(data.post.caption)
             setComments(data.comments)
@@ -78,43 +77,9 @@ const ShowPost = ({ comment, user, like }) => {
         }
     }
 
-    // const handleLike = async (postId) => {
-    //     try {
-    //       const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Authorization': `Bearer ${getUserToken()}`
-    //         }
-    //       });
-    //       const updatedPost = await response.json();
-    //       console.log('handleLike')
-    //       return updatedPost;
-    //     } catch (err) {
-    //       console.error('Error posting like', err)
-    //   }
-    //   }
-
-    // const likeRender = async (post) => {
-    //     try {
-    //         console.log(post)
-    //         const updatedPost = await handleLike(post._id);
-    //         // setPost(updatedPost);
-    //         console.log(updatedPost)
-    //         console.log(user._id)
-    //         // Update the Icon
-    //         const isLiked = post.likes.includes(user._id);
-    //         const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
-    //         setHeartIconSrc(heartIcon);
-    //         console.log(heartIconSrc);
-    //     } catch (err) {
-    //         console.error('Error Liking Post', err)
-    //     }
-    // }
 
     const handleLike = async (postId) => {
         try {
-            console.log(postId)
             const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
             method: 'POST',
             headers: {
@@ -123,10 +88,8 @@ const ShowPost = ({ comment, user, like }) => {
             }
           });
           const updatedPost = await response.json();
-          console.log(updatedPost);
 
           setPost(updatedPost);
-          console.log(user._id)
           const isLiked = updatedPost.likes.includes(user._id);
           const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
           setHeartIconSrc(heartIcon)
