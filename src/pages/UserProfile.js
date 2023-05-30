@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import NewPost from '../components/NewPost';
 import { getUserToken } from '../utils/authToken';
 
-const UserProfile = ({ user, isLoggedIn }) => {
+const UserProfile = ({ user, isLoggedIn, like }) => {
     const [userPosts, setUserPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { username } = useParams();
@@ -55,14 +55,15 @@ const UserProfile = ({ user, isLoggedIn }) => {
                 <div className='slideshow'>
                     <img src={post.image} alt='user post' className='slideshowImg' />
                 </div>
+                </Link>
                 <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
                     <div className='iconContainer'>
-                        <img src="/assets/redHeart.png" alt="like" className="icon" />
+                        <img onClick={() => like(post._id)} src="/assets/redHeart.png" alt="like" className="icon" />
                         <img src="/assets/comments.png" alt="comment" className="icon" />
                     </div>
                 <p className='heroPostTag'>{`@${username}`}</p>
                 </div>
-                </Link>
+                
             </div>
         ))}
         </div>

@@ -5,12 +5,13 @@ import CommentForm from '../components/CommentForm';
 import EditDelete from '../components/EditDelete';
 import { getUserToken } from '../utils/authToken';
 
-const ShowPost = ({ comment, user }) => {
+const ShowPost = ({ comment, user, like }) => {
     const [post, setPost] = useState({});
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
     const [caption, setCaption] = useState('');
     const [editing, setEditing] = useState(false);
+    const [heartIconSrc, setHeartIconSrc] = useState()
     const { id } = useParams();
     const navigate = useNavigate();
     
@@ -19,10 +20,8 @@ const ShowPost = ({ comment, user }) => {
         try {
             const response = await fetch(`http://localhost:4000/art/${id}`);
             const data = await response.json();
-            console.log(data)
             setPost(data)
             setCaption(data.post.caption)
-            console.log(user.username)
             setComments(data.comments)
             setLoading(false);
         } catch (err) {
@@ -71,6 +70,64 @@ const ShowPost = ({ comment, user }) => {
             console.error('Error deleting post', err)
         }
     }
+
+    // const handleLike = async (postId) => {
+    //     try {
+    //       const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Authorization': `Bearer ${getUserToken()}`
+    //         }
+    //       });
+    //       const updatedPost = await response.json();
+    //       console.log('handleLike')
+    //       return updatedPost;
+    //     } catch (err) {
+    //       console.error('Error posting like', err)
+    //   }
+    //   }
+
+    // const likeRender = async (post) => {
+    //     try {
+    //         console.log(post)
+    //         const updatedPost = await handleLike(post._id);
+    //         // setPost(updatedPost);
+    //         console.log(updatedPost)
+    //         console.log(user._id)
+    //         // Update the Icon
+    //         const isLiked = post.likes.includes(user._id);
+    //         const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
+    //         setHeartIconSrc(heartIcon);
+    //         console.log(heartIconSrc);
+    //     } catch (err) {
+    //         console.error('Error Liking Post', err)
+    //     }
+    // }
+
+    const handleLike = async (post) => {
+        try {
+            console.log(post._id)
+            const response = await fetch(`http://localhost:4000/art/${post._id}/like`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getUserToken()}`
+            }
+          });
+          const updatedPost = await response.json();
+          console.log(updatedPost);
+
+          setPost(updatedPost);
+
+          const isLiked = updatedPost.likes.includes(user._id);
+          const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
+          setHeartIconSrc(heartIcon)
+        } catch (err) {
+                console.error('Error Liking Post', err)
+            }
+    }
+
     if (loading) {
         return <div  className='loading'><h1>Loading...</h1></div>
     }
@@ -97,7 +154,7 @@ const ShowPost = ({ comment, user }) => {
             </div>
             <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
                 <div className='iconContainer'>
-                    <img src="/assets/redHeart.png" alt="like" className="icon" />
+                    <img onClick={() => handleLike(post.post)} src={heartIconSrc} alt="like" className="icon" />
                     <img src="/assets/comments.png" alt="comment" className="icon" />
                 </div>
                 <Link to={`/user/profile/${post.username}`}><p className='heroPostTag'>{`@${post.username}`}</p></Link>

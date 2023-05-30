@@ -8,17 +8,17 @@ import ShowPost from '../pages/ShowPost';
 import Trending from '../pages/Trending';
 // import { UserContext } from '../UserContext';
 
-const Main = ({ signUp, login, user, isLoggedIn, comment }) => {
+const Main = ({ signUp, login, user, isLoggedIn, comment, like, heart }) => {
   return (
     <div>
       {/* <UserContext.Provider> */}
       <Routes>
-        <Route path='/' element={<Home isLoggedIn={isLoggedIn} user={user}/>} />
+        <Route path='/' element={<Home isLoggedIn={isLoggedIn} user={user} like={like}/>} />
         <Route path='/signup' element={<SignUp signUp={signUp}/>} />
         <Route path='/login' element={<LogIn login={login}/>} />
-        <Route path='/user/profile/:username' element={<UserProfile user={user} isLoggedIn={isLoggedIn} />} />
-        <Route path='/art/:id' element={<ShowPost user={user} isLoggedIn={isLoggedIn} comment={comment}/>}/>
-        <Route path='/trending' element={<Trending user={user} isLoggedIn={isLoggedIn} />} />
+        <Route path='/user/profile/:username' element={<UserProfile user={user} isLoggedIn={isLoggedIn} like={like}/>} />
+        <Route path='/art/:id' element={<ShowPost user={user} isLoggedIn={isLoggedIn} comment={comment} like={like} heart={heart}/>}/>
+        <Route path='/trending' element={<Trending user={user} isLoggedIn={isLoggedIn} like={like}/>} />
       </Routes>
       {/* </UserContext.Provider> */}
     </div>

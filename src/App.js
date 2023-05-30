@@ -98,17 +98,17 @@ const loginUser = async (data) => {
   }
 }
 
-const handleLike = async (postId) => {
-  try {
-    const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getUserToken()}`
-      }
-    })
-  }
-}
+
+
+
+
+// const renderHeartIcon = (post) => {
+//   const isLiked = post.likes.includes(currentUser._id);
+//   const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
+//   return (
+//     <img onClick={() => handleLike(post._id)} src={heartIcon} alt="like" className="icon" />
+//   );
+// };
 
 const handleComment = async (postId, commentText) => {
   try {
@@ -140,7 +140,8 @@ const handleComment = async (postId, commentText) => {
         signUp={signUp} 
         login={loginUser} 
         user={currentUser}
-        comment={handleComment}/>
+        comment={handleComment}
+        />
       <Footer isLoggedIn={isAuthenticated} setIsLoggedIn={setIsAuthenticated} />
     </div>
   );
