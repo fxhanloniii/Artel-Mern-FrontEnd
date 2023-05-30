@@ -89,6 +89,13 @@ nav li {
   margin-top: 50px;
 }
 
+@media screen and (max-width: 1000px) {
+  .hero {
+    flex-direction: column;
+    padding-bottom: 100px;
+  }
+}
+
 .hero1 {
   width: 400px;
   height: 350px;
