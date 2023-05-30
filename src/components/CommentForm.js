@@ -27,7 +27,7 @@ const CommentForm = ({ comment, comments, postId, user, fetchPost }) => {
     const deleteComment = async (commentId) => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:4000/art/${postId}/comment/${commentId}`, {
+        await fetch(`http://localhost:4000/art/${postId}/comment/${commentId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

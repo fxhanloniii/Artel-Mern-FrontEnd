@@ -41,7 +41,7 @@ const ShowPost = ({ comment, user }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/art/${id}`, {
+                await fetch(`http://localhost:4000/art/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

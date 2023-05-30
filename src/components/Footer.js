@@ -7,7 +7,7 @@ const Footer = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:4000/auth/logout', {
+      await fetch('http://localhost:4000/auth/logout', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
