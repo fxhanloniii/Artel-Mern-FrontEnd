@@ -81,6 +81,11 @@ const loginUser = async (data) => {
       'http://localhost:4000/auth/login',
       configs
     )
+
+    if (!response.ok) {
+      return false;
+    }
+    
     const { user, token } = await response.json()
     
     
@@ -95,6 +100,7 @@ const loginUser = async (data) => {
   } catch (err) {
     clearUserToken()
     setIsAuthenticated(false)
+    return false;
   }
 }
 

@@ -11,7 +11,6 @@ const UserProfile = ({ user, isLoggedIn, like }) => {
 
     useEffect(() => {
         const fetchUserProfile = async () => {
-            console.log(user)
             try { 
                 const response = await fetch(`http://localhost:4000/user/profile/${username}`, {
                     headers: {

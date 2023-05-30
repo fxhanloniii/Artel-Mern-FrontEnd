@@ -11,7 +11,8 @@ const ShowPost = ({ comment, user, like }) => {
     const [comments, setComments] = useState([]);
     const [caption, setCaption] = useState('');
     const [editing, setEditing] = useState(false);
-    const [heartIconSrc, setHeartIconSrc] = useState()
+    const [heartIconSrc, setHeartIconSrc] = useState();
+    const [userName, setUserName] = useState();
     const { id } = useParams();
     const navigate = useNavigate();
     
@@ -20,9 +21,14 @@ const ShowPost = ({ comment, user, like }) => {
         try {
             const response = await fetch(`http://localhost:4000/art/${id}`);
             const data = await response.json();
-            setPost(data)
+            console.log(data)
+            setPost(data.post)
             setCaption(data.post.caption)
             setComments(data.comments)
+            setUserName(data.username)
+            const isLiked = data.post.likes.includes(user._id);
+            const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
+            setHeartIconSrc(heartIcon)
             setLoading(false);
         } catch (err) {
             console.error('Error fetching post', err);
@@ -62,6 +68,7 @@ const ShowPost = ({ comment, user, like }) => {
                 body: JSON.stringify({ caption }),
             });
             const data = await response.json();
+
             setPost(data);
             setCaption(data.caption)
             setEditing(false);
@@ -105,10 +112,10 @@ const ShowPost = ({ comment, user, like }) => {
     //     }
     // }
 
-    const handleLike = async (post) => {
+    const handleLike = async (postId) => {
         try {
-            console.log(post._id)
-            const response = await fetch(`http://localhost:4000/art/${post._id}/like`, {
+            console.log(postId)
+            const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -119,7 +126,7 @@ const ShowPost = ({ comment, user, like }) => {
           console.log(updatedPost);
 
           setPost(updatedPost);
-
+          console.log(user._id)
           const isLiked = updatedPost.likes.includes(user._id);
           const heartIcon = isLiked ? "/assets/redHeart.png" : "/assets/heart.png";
           setHeartIconSrc(heartIcon)
@@ -138,30 +145,30 @@ const ShowPost = ({ comment, user, like }) => {
         <div>
             {editing ? ( 
                 <form className='editForm' onSubmit={handleEdit}>
-                <input type='text' placeholder={post.post.caption} value={caption} onChange={(e) => setCaption(e.target.value)} className='caption'/>
+                <input type='text' placeholder={post.caption} value={caption} onChange={(e) => setCaption(e.target.value)} className='caption'/>
                 <div className='showPostBtns'>
                 <button type='submit' value='Save' className='save bg-gradient-to-r from-blue-500 to-purple-500'>Save</button>
                 <button onClick={() => setEditing(false)} className='save bg-gradient-to-r from-blue-500 to-purple-500'>Cancel</button>
                 </div>
                 </form>
             ) : ( 
-            <p className='caption'>{post.post.caption}</p>
+            <p className='caption'>{post.caption}</p>
             )}
         </div>
         <div className='heroPost'>
             <div className='slideshow'>
-                <img src={post.post.image } alt='user post' className='slideshowImg' />
+                <img src={post.image } alt='user post' className='slideshowImg' />
             </div>
             <div className='heroPostBottom bg-gradient-to-r from-gray-50 to-stone-300'>
                 <div className='iconContainer'>
-                    <img onClick={() => handleLike(post.post)} src={heartIconSrc} alt="like" className="icon" />
+                    <img onClick={() => handleLike(post._id)} src={heartIconSrc} alt="like" className="icon" />
                     <img src="/assets/comments.png" alt="comment" className="icon" />
                 </div>
-                <Link to={`/user/profile/${post.username}`}><p className='heroPostTag'>{`@${post.username}`}</p></Link>
+                <Link to={`/user/profile/${userName}`}><p className='heroPostTag'>{`@${userName}`}</p></Link>
                 </div>
         </div>
         <div className='showPostBtns'>   
-           {user._id === post.post.user && <EditDelete handleDelete={handleDelete} setEditing={setEditing}/> }
+           {user._id === post.user && <EditDelete handleDelete={handleDelete} setEditing={setEditing}/> }
         </div>
         <div>
             <CommentForm postId={id} comment={comment} comments={comments} setComments={setComments} fetchPost={fetchPost} user={user}/>

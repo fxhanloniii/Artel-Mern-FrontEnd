@@ -6,6 +6,7 @@ import { setUserToken } from '../utils/authToken';
 const LogInForm = ({ login }) => {
     const initialState = { username: '', password: ''};
     const [input, setInput] = useState(initialState);
+    const [errRes, SetErrRes] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -15,7 +16,8 @@ const LogInForm = ({ login }) => {
         if (createdUserToken) {
             navigate(`/user/profile/${input.username}`);
         } else {
-            navigate('/')
+            SetErrRes('Invalid Username or Password')
+            navigate('/login')
         }
         setInput(initialState);
     };
@@ -25,6 +27,8 @@ const LogInForm = ({ login }) => {
     };
 
   return (
+    <>
+    <h1 className='error'>{errRes}</h1>
     <div className="form">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
@@ -34,6 +38,7 @@ const LogInForm = ({ login }) => {
           name="username"
           value={input.username}
           onChange={handleChange}
+          required
         />
         <br />
         <br />
@@ -44,12 +49,14 @@ const LogInForm = ({ login }) => {
           type="password"
           value={input.password}
           onChange={handleChange}
+          required
         />
         <br />
         <br />
         <input className="submit bg-gradient-to-r from-blue-500 to-purple-500" type="submit" value="Login" />
       </form>
     </div>
+    </>
   )
 }
 

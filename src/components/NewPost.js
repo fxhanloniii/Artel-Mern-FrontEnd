@@ -8,8 +8,6 @@ const NewPost = ({ onNewPost }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('post submit')
-        console.log(getUserToken())
         try {
             const response = await fetch('http://localhost:4000/art/', {
                 method: 'POST',
@@ -43,10 +41,10 @@ const NewPost = ({ onNewPost }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Caption:</label>
-        <input type='text' value={caption} name='caption' placeholder='caption' onChange={handleChange} id='caption'/>
+        <input type='text' value={caption} name='caption' placeholder='caption' onChange={handleChange} id='caption' required/>
         <br />
         <label>Image URL:</label>
-        <input type='text' value={image} name='image' placeholder='image' onChange={handleChange} id='image'/>
+        <input type='text' value={image} name='image' placeholder='image' onChange={handleChange} id='image'required/>
         <br />
         <input className="post bg-gradient-to-r from-blue-500 to-purple-500 text-white" type="submit" value="Post" />
       </form>

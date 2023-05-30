@@ -354,3 +354,7 @@ nav li {
   margin-top: 20px;
   font-size: 40px;
 }
+
+.error {
+  text-align: center;
+}

@@ -16,15 +16,10 @@ const Header = ({ user, isLoggedIn }) => {
             <li>
                 <Link to='/'>Home</Link>
             </li>
+            {isLoggedIn && ( 
             <li>
                 <Link to='/trending'>Trending</Link>
-            </li>
-            <li>
-                <Link to='/artroom'>Art Room</Link>
-            </li>
-            <li>
-                <Link to='/about'>About</Link>
-            </li>
+            </li> )}
             <li>
               {isLoggedIn ? (
                 <Link to={`/user/profile/${user.username}`} 

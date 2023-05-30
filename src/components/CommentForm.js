@@ -67,6 +67,7 @@ const CommentForm = ({ comment, comments, postId, user, fetchPost }) => {
             value={commentText}
             onChange={handleChange}
             className='commentInput'
+            required
             />
             <input className='submit bg-gradient-to-r from-blue-500 to-purple-500' type='submit' value='Submit' />
         </form>
