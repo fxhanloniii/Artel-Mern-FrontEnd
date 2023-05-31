@@ -19,7 +19,7 @@ const ShowPost = ({ comment, user }) => {
 
     const fetchPost = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/art/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/${id}`);
             const data = await response.json();
             setPost(data.post)
             setCaption(data.post.caption)
@@ -41,7 +41,7 @@ const ShowPost = ({ comment, user }) => {
 
     const handleDelete = async () => {
         try {
-                await fetch(`http://localhost:4000/art/${id}`, {
+                await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const ShowPost = ({ comment, user }) => {
         e.preventDefault();
         try {
             setLoading(true)
-            const response = await fetch(`http://localhost:4000/art/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const ShowPost = ({ comment, user }) => {
 
     const handleLike = async (postId) => {
         try {
-            const response = await fetch(`http://localhost:4000/art/${postId}/like`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/${postId}/like`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

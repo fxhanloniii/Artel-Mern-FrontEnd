@@ -7,7 +7,7 @@ const Footer = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:4000/auth/logout', {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

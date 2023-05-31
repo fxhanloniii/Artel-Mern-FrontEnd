@@ -17,7 +17,7 @@ function App() {
       if (token) {
         const fetchUser = async () => {
           try {
-            const response = await fetch('http://localhost:4000/user', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user`, {
               headers: {
                 'Authorization': `Bearer ${token}`
               }
@@ -46,7 +46,7 @@ function App() {
         },
       }
     const newUser = await fetch(
-      'http://localhost:4000/auth/signup',
+      `${process.env.REACT_APP_BACKEND_URL}/auth/signup`,
       configs
     )
     const parsedUser = await newUser.json()
@@ -74,7 +74,7 @@ const loginUser = async (data) => {
       },
     }
     const response = await fetch(
-      'http://localhost:4000/auth/login',
+      `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
       configs
     )
 
@@ -109,7 +109,7 @@ const handleComment = async (postId, commentText) => {
       text: commentText,
       user: currentUser._id
     };
-    const response = await fetch(`http://localhost:4000/art/${postId}/comment`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/${postId}/comment`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

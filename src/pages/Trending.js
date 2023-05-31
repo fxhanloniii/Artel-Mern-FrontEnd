@@ -10,7 +10,7 @@ const Trending = ({ user, isLoggedIn }) => {
     useEffect(() => {
         const fetchTrending = async () => {
             try { 
-                const response = await fetch('http://localhost:4000/user/trending', {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/trending`, {
                     headers: {
                         'Authorization': `Bearer ${getUserToken()}`,
                     },

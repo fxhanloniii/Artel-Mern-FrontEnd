@@ -9,7 +9,7 @@ const NewPost = ({ onNewPost }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:4000/art/', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/art/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

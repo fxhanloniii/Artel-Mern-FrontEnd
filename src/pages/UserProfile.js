@@ -12,7 +12,7 @@ const UserProfile = ({ user, isLoggedIn, like }) => {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try { 
-                const response = await fetch(`http://localhost:4000/user/profile/${username}`, {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profile/${username}`, {
                     headers: {
                         'Authorization': `Bearer ${getUserToken()}`,
                     },
